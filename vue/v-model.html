@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>v-model test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <div class="form-group">
+            <label>あなたの名前は？</label>
+            <input type="text" v-model="name" class="form-control">
+        </div>
+        
+        <p class="alert alert-success">
+            ようこそ、<strong>{{ name }}</strong> さん！
+        </p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    name: '名無し'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

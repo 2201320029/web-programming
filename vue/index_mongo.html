@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB連携</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <h1>MongoDB データ一覧</h1>
+        <button class="btn btn-primary mb-3" v-on:click="getData">データを取得</button>
+
+        <ul class="list-group">
+            <li v-for="user in users" class="list-group-item">
+                名前: {{ user.name }} / Mail: {{ user.email }}
+            </li>
+        </ul>
+        
+        <div v-if="message" class="alert alert-info mt-3">
+            {{ message }}
+        </div>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    users: [],
+                    message: ''
+                }
+            },
+            methods: {
+                getData() {
+                    this.message = '読み込み中...';
+                    // ★あなたのサーバーのポート30048にアクセスする
+                    axios.get('http://jsfw.p.cyber-u.ac.jp:30048/mongo')
+                        .then((response) => {
+                            this.users = response.data;
+                            if (this.users.length === 0) {
+                                this.message = 'データが空です（MongoDBにデータが入っていません）';
+                            } else {
+                                this.message = '';
+                            }
+                        })
+                        .catch((error) => {
+                            this.message = 'エラーが発生しました: ' + error;
+                        });
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>v-bind test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a v-bind:href="url">サイバー大学へGO</a>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    url: 'https://www.cyber-u.ac.jp'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

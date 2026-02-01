@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>v-on test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <button class="btn btn-primary mr-2" v-on:click="countUp">クリックしてね</button>
+        <button class="btn btn-danger" v-on:click="reset">リセット</button>
+        
+        <h2 class="mt-3">クリック回数: {{ count }} 回</h2>
+
+        <div v-on:mouseover="showAlert" class="mt-4 p-3 bg-light border">
+            ここにはマウスを乗せないで！
+        </div>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                countUp() {
+                    this.count++;
+                },
+                reset() {
+                    this.count = 0;
+                },
+                showAlert() {
+                    console.log("マウスが乗りました！");
+                    // alert('乗りましたね！'); // 邪魔ならコメントアウト
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

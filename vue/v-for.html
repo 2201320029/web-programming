@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>v-for test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <h1>名簿リスト</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>名前</th>
+                    <th>メール</th>
+                    <th>電話番号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.tel }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    // ここに名簿データを用意
+                    users: [
+                        { name: 'Yasushi', mail: 'osonoi@cu', tel: '1111' },
+                        { name: 'Koh', mail: 'kojima@cu', tel: '2222' },
+                        { name: 'Alice', mail: 'alice@example.com', tel: '3333' },
+                        { name: 'Bob', mail: 'bob@example.com', tel: '4444' }
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

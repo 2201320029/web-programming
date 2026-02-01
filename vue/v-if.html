@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>v-if test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="toggle">表示切替</button>
+        
+        <h1 v-if="visible">見えてますか？</h1>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    visible: true
+                }
+            },
+            methods: {
+                toggle() {
+                    // trueとfalseを反転させる
+                    this.visible = !this.visible;
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
