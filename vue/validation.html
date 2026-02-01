@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Test</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <h1>お問い合わせフォーム</h1>
+
+        <div class="form-group">
+            <label>メールアドレス <span class="badge badge-danger">必須</span></label>
+            <input type="text" v-model="email" class="form-control" placeholder="example@gmail.com">
+            <p v-if="errorEmail" class="text-danger">{{ errorEmail }}</p>
+        </div>
+
+        <button class="btn btn-primary" v-on:click="checkForm">送信</button>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    email: '',
+                    errorEmail: ''
+                }
+            },
+            methods: {
+                checkForm() {
+                    // エラーを一旦リセット
+                    this.errorEmail = '';
+
+                    // 1. 空っぽチェック
+                    if (!this.email) {
+                        this.errorEmail = 'メールアドレスは必須です！';
+                        return; // ここで中断
+                    }
+
+                    // 2. 「@」が入っているかチェック
+                    if (!this.email.includes('@')) {
+                        this.errorEmail = '正しいメールアドレスの形式ではありません（@がない）';
+                        return;
+                    }
+
+                    // エラーがなければ送信処理（今回はアラートだけ）
+                    alert('送信完了！');
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
