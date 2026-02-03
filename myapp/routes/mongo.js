@@ -7,7 +7,7 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'cu2201320029'; 
 
 router.get('/', (req, res) => {
-    MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
+    MongoClient.connect(url, async (err, client) => {
         if (err) {
             console.error(err);
             res.json({ status: 'error', error: err.message });

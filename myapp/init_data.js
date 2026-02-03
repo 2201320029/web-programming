@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
 const dbName = 'cu2201320029'; // あなたの学籍番号
 
-MongoClient.connect(url, { useUnifiedTopology: true }, async (err, client) => {
+MongoClient.connect(url, async (err, client) => {
     if (err) {
         console.error("接続失敗:", err);
         return;
